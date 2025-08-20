@@ -16,16 +16,18 @@ import java.util.List;
 public class Restaurant {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name="rest_seq",sequenceName = "rest_seq",allocationSize = 1,initialValue = 10)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "rest_id")
     private Long restId;
 
-    @Column(nullable = false, length = 100)
+    @Column(name ="name" ,nullable=false, length = 100)
     private String name;
 
+    @Column(name ="address" ,nullable=false, length = 255)
     private String address;
 
-    @Column(length = 50)
+    @Column(name ="cuisine" , length = 50)
     private String cuisine;
 
     @Column(name = "open_time", nullable = false)
@@ -37,9 +39,4 @@ public class Restaurant {
     @Column(name = "no_of_tables", columnDefinition = "INTEGER DEFAULT 0")
     private Integer numberOfTables;
 
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Tables> tables;
-
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Booking> bookings;
 }

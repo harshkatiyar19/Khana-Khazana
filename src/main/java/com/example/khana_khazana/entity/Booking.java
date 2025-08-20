@@ -14,20 +14,21 @@ import java.time.LocalDateTime;
 public class Booking {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name="booking_seq",sequenceName = "booking_seq",allocationSize = 1,initialValue = 10)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "booking_id")
     private Long bookingId;
 
     @ManyToOne
-    @JoinColumn(name = "rest_id", nullable = false)
+    @JoinColumn(name = "rest_id", nullable = false , referencedColumnName = "rest_id")
     private Restaurant restaurant;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "user_id")
+    private Users user;
 
     @ManyToOne
-    @JoinColumn(name = "table_id", nullable = false)
+    @JoinColumn(name = "table_id", nullable = false, referencedColumnName = "table_id")
     private Tables table;
 
     @Column(name = "open_time", nullable = false)
@@ -36,9 +37,9 @@ public class Booking {
     @Column(name = "close_time", nullable = false)
     private LocalDateTime closeTime;
 
-    @Column(nullable = false)
-    private String status = "pending";
+    @Column(name="status" ,nullable = false)
+    private BookingStatus status = BookingStatus.pending;
 
-    @Column(nullable = false)
+    @Column(name="people",nullable = false)
     private Integer people;
 }

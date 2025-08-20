@@ -15,17 +15,15 @@ import java.util.List;
 public class Tables {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name="table_seq",sequenceName = "table_seq",allocationSize = 1,initialValue = 10)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "table_id")
     private Long tableId;
 
     @ManyToOne
-    @JoinColumn(name = "rest_id", nullable = false)
+    @JoinColumn(name = "rest_id", nullable = false,referencedColumnName = "rest_id")
     private Restaurant restaurant;
 
-    @Column(nullable = false)
+    @Column(name = "seats",nullable = false)
     private Integer seats;
-
-    @OneToMany(mappedBy = "table", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Booking> bookings;
 }
