@@ -25,7 +25,7 @@ public class TablesController {
     @GetMapping("v1/allTables/{rest_id}")
     public ResponseEntity<?> getAllTablesByRestaurants(@PathVariable  Long rest_id) {
         try{
-            return tablesService.getAllTablesByRestaurants(rest_id);
+            return ResponseEntity.ok(tablesService.getAllTablesByRestaurants(rest_id));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
         }
@@ -34,7 +34,8 @@ public class TablesController {
     @GetMapping("v1/tables/{id}")
     public ResponseEntity<?> getTableById(@PathVariable  Long id) {
         try{
-            return tablesService.getTableById(id);
+            return ResponseEntity.ok(
+                    tablesService.getTableById(id));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
         }
@@ -43,7 +44,7 @@ public class TablesController {
     @GetMapping("v1/allTablesBySeats")
     public ResponseEntity<?> getAllTablesBySeats(@PathVariable  Integer seats) {
         try{
-            return tablesService.getAllTablesBySeats(seats);
+            return ResponseEntity.ok(tablesService.getAllTablesBySeats(seats));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
         }

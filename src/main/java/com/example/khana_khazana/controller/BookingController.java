@@ -1,8 +1,11 @@
 package com.example.khana_khazana.controller;
 
-import com.example.khana_khazana.dto.booking.BookingCreate;
+import com.example.khana_khazana.dto.booking.request.BookingCreate;
 import com.example.khana_khazana.entity.BookingStatus;
 import com.example.khana_khazana.service.BookingService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +21,10 @@ public class BookingController {
     private BookingService bookingService;
 
     //creation
+    @Operation(summary = "Create new booking", description = "all checks are at place.")
     @PostMapping("v1/new")
-    public ResponseEntity<?> createNewBooking(@RequestBody BookingCreate request) {
+    public ResponseEntity<?> createNewBooking(@Parameter(description = "Booking creation request payload", required = true,
+            schema = @Schema(implementation = BookingCreate.class))@RequestBody BookingCreate request) {
         try{
             return bookingService.createNewBooking(request);
         } catch (Exception e) {

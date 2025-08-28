@@ -1,10 +1,11 @@
-package com.example.khana_khazana.dto.users;
+package com.example.khana_khazana.dto.users.request;
 
 public record UsersCreate(
         String name,
         String email,
         String password,
-        Long phoneNumber
+        String confirmPassword,
+        String phoneNumber
 ) { }
 
 //Long userId,

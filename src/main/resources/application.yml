@@ -3,7 +3,9 @@ spring:
     url: jdbc:postgresql://localhost:5432/khana_khazana
     username: postgres
     password: mysecretpassword
-    driver-class-name: org.postgresql.Driver
+  session:
+    jdbc:
+      initialize-schema: always
 
   jpa:
     hibernate:

@@ -24,7 +24,7 @@ public class Restaurant {
     @Column(name ="name" ,nullable=false, length = 100)
     private String name;
 
-    @Column(name ="address" ,nullable=false, length = 255)
+    @Column(name ="address" ,nullable=false)
     private String address;
 
     @Column(name ="cuisine" , length = 50)

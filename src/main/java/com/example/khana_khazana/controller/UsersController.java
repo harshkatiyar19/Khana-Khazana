@@ -1,8 +1,8 @@
 package com.example.khana_khazana.controller;
 
-import com.example.khana_khazana.dto.users.UsersCreate;
-import com.example.khana_khazana.dto.users.UsersEmail;
-import com.example.khana_khazana.dto.users.UsersPhone;
+import com.example.khana_khazana.dto.users.request.UsersCreate;
+import com.example.khana_khazana.dto.users.request.UsersEmail;
+import com.example.khana_khazana.dto.users.request.UsersPhone;
 import com.example.khana_khazana.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ public class UsersController {
     @PostMapping("v1/signup")
     public ResponseEntity<?> createNewUser(@RequestBody UsersCreate request) {
         try{
-            return usersService.createNewUser(request);
+            return ResponseEntity.ok(usersService.createNewUser(request));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
         }
@@ -62,9 +62,9 @@ public class UsersController {
     }
 
     @DeleteMapping("v1/{id}/delete")
-    public ResponseEntity<?> deleteUserByEmail(@PathVariable Long id,@RequestParam String password){
+    public ResponseEntity<?> deleteUser(@PathVariable Long id,@RequestParam String password){
         try {
-            return ResponseEntity.ok().body(usersService.deleteUserByEmail(id,password));
+            return ResponseEntity.ok().body(usersService.deleteUser(id,password));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
         }

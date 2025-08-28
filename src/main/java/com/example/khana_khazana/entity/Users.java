@@ -3,8 +3,7 @@ package com.example.khana_khazana.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.List;
+import lombok.Builder;
 
 @Entity
 @Table(name = "users")
@@ -30,6 +29,6 @@ public class Users {
     private String password;
 
     @Column(name="phone_number",nullable = false)
-    private Long phoneNumber;
+    private String phoneNumber;
 
 }

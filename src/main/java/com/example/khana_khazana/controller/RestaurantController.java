@@ -1,6 +1,6 @@
 package com.example.khana_khazana.controller;
 
-import com.example.khana_khazana.dto.restaurant.RestaurantCreate;
+import com.example.khana_khazana.dto.restaurant.request.RestaurantCreate;
 import com.example.khana_khazana.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ public class RestaurantController {
     @PostMapping("v1/new")
     public ResponseEntity<?> createNewRestaurant(@RequestBody RestaurantCreate request) {
         try{
-            return restaurantService.createNewRestaurant(request);
+            return ResponseEntity.ok(restaurantService.createNewRestaurant(request));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
         }
@@ -74,7 +74,7 @@ public class RestaurantController {
     @GetMapping("/v1/{id}")
     public ResponseEntity<?> getRestaurantById(@PathVariable Long id){
         try {
-            return ResponseEntity.ok().body(restaurantService.getRestaurantByName(id));
+            return ResponseEntity.ok().body(restaurantService.getRestaurantById(id));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
         }
@@ -145,14 +145,14 @@ public class RestaurantController {
         }
     }
 
-    @PatchMapping("v1/{id}/update/tables")
-    public ResponseEntity<?> updateNumberOfTables(@PathVariable Long id, @RequestParam Integer newNumberOfTables){
-        try {
-            return restaurantService.updateNumberOfTables(id,newNumberOfTables);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
-        }
-    }
+//    @PatchMapping("v1/{id}/update/tables")
+//    public ResponseEntity<?> updateNumberOfTables(@PathVariable Long id, @RequestParam Integer newNumberOfTables){
+//        try {
+//            return restaurantService.updateNumberOfTables(id,newNumberOfTables);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+//        }
+//    }
 
     @GetMapping("/close-time")
     public ResponseEntity<?> getAllRestaurantsByCloseTime(@RequestParam LocalTime closeTime){

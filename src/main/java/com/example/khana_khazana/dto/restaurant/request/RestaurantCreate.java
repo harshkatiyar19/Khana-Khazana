@@ -1,4 +1,4 @@
-package com.example.khana_khazana.dto.restaurant;
+package com.example.khana_khazana.dto.restaurant.request;
 
 import java.time.LocalTime;
 
