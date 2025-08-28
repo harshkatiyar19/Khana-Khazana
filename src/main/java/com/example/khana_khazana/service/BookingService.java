@@ -17,32 +17,32 @@ import java.util.List;
 public class BookingService {
     @Autowired
     BookingRepository bookingRepository;
-    public ResponseEntity<?> updatePeople(Long id, Integer newPeople) {
+    public ResponseEntity<String> updatePeople(Long id, Integer newPeople) {
         int status = bookingRepository.updatePeople(id,newPeople);
         String successMsg="No of People Updated successfully.";
         String failureMsg="Unable to update no of people.";
         return updateMsg(status , successMsg,failureMsg);
     }
 
-    public ResponseEntity<?> updateStatus(Long id, BookingStatus newStatus) {int status = bookingRepository.updateStatus(id,newStatus);
+    public ResponseEntity<String> updateStatus(Long id, BookingStatus newStatus) {int status = bookingRepository.updateStatus(id,newStatus);
         String successMsg="Status Updated successfully.";
         String failureMsg="Unable to update Status.";
         return updateMsg(status , successMsg,failureMsg);
     }
 
-    public ResponseEntity<?> updateCloseTime(Long id, LocalTime newCloseTime) {int status = bookingRepository.updateCloseTime(id,newCloseTime);
+    public ResponseEntity<String> updateCloseTime(Long id, LocalTime newCloseTime) {int status = bookingRepository.updateCloseTime(id,newCloseTime);
         String successMsg="Closing Time Updated successfully.";
         String failureMsg="Unable to update Closing Time.";
         return updateMsg(status , successMsg,failureMsg);
     }
 
-    public ResponseEntity<?> updateOpenTime(Long id, LocalTime newOpenTime) {int status = bookingRepository.updateOpenTime(id,newOpenTime);
+    public ResponseEntity<String> updateOpenTime(Long id, LocalTime newOpenTime) {int status = bookingRepository.updateOpenTime(id,newOpenTime);
         String successMsg="Opening Time Updated successfully.";
         String failureMsg="Unable to update Opening Time.";
         return updateMsg(status , successMsg,failureMsg);
     }
 
-    public ResponseEntity<?> createNewBooking(BookingCreate request){
+    public ResponseEntity<String> createNewBooking(BookingCreate request){
         int status =bookingRepository.createBooking(request.restId(),request.userId(),request.openTime(),request.closeTime(),request.status(), request.people());
         String failureMsg="Booking already Exists.";
         String successMsg="Booking created Successfully.";
@@ -67,7 +67,7 @@ public class BookingService {
     public List<Booking> getAllBookingsByUser(Long id) {return bookingRepository.findByUserUserId(id);
     }
 
-    private ResponseEntity<?> updateMsg(int status ,String successMsg,String failureMsg){
+    private ResponseEntity<String> updateMsg(int status ,String successMsg,String failureMsg){
         if(status>0){
             return ResponseEntity.ok(successMsg);
         }

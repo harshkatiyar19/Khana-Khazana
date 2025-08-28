@@ -25,12 +25,12 @@ public class BookingController {
 	//creation
 	@Operation(summary = "Create new booking", description = "Creates a booking with restaurant id, user id, time range, status, and number of people. All validations are handled in service.")
 	@PostMapping("v1/new")
-	public ResponseEntity<?> createNewBooking(@Parameter(description = "Booking creation request payload", required = true,
+	public ResponseEntity<String> createNewBooking(@Parameter(description = "Booking creation request payload", required = true,
 		schema = @Schema(implementation = BookingCreate.class))@RequestBody BookingCreate request) {
 		try{
 			return bookingService.createNewBooking(request);
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.toString());
 		}
 	}
 
@@ -100,41 +100,41 @@ public class BookingController {
 	//updation
 	@Operation(summary = "Update booking open time", description = "Updates the opening time for a booking by id. Returns update result.")
 	@PatchMapping("v1/{id}/update/open-time")
-	public ResponseEntity<?> updateOpenTime(@Parameter(description = "Booking id") @PathVariable Long id, @Parameter(description = "New opening time") @RequestParam LocalTime newOpenTime){
+	public ResponseEntity<String> updateOpenTime(@Parameter(description = "Booking id") @PathVariable Long id, @Parameter(description = "New opening time") @RequestParam LocalTime newOpenTime){
 		try {
 			return bookingService.updateOpenTime(id,newOpenTime);
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.toString());
 		}
 	}
 
 	@Operation(summary = "Update booking close time", description = "Updates the closing time for a booking by id. Returns update result.")
 	@PatchMapping("v1/{id}/update/close-time")
-	public ResponseEntity<?> updateCloseTime(@Parameter(description = "Booking id") @PathVariable Long id, @Parameter(description = "New closing time") @RequestParam LocalTime newCloseTime){
+	public ResponseEntity<String> updateCloseTime(@Parameter(description = "Booking id") @PathVariable Long id, @Parameter(description = "New closing time") @RequestParam LocalTime newCloseTime){
 		try {
 			return bookingService.updateCloseTime(id,newCloseTime);
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.toString());
 		}
 	}
 
 	@Operation(summary = "Update booking status", description = "Updates the booking status by id. Returns update result.")
 	@PatchMapping("v1/{id}/update/status")
-	public ResponseEntity<?> updateStatus(@Parameter(description = "Booking id") @PathVariable Long id, @Parameter(description = "New status") @RequestParam BookingStatus newStatus){
+	public ResponseEntity<String> updateStatus(@Parameter(description = "Booking id") @PathVariable Long id, @Parameter(description = "New status") @RequestParam BookingStatus newStatus){
 		try {
 			return bookingService.updateStatus(id,newStatus);
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.toString());
 		}
 	}
 
 	@Operation(summary = "Update booking people", description = "Updates number of people for a booking by id. Returns update result.")
 	@PatchMapping("v1/{id}/update/people")
-	public ResponseEntity<?> updatePeople(@Parameter(description = "Booking id") @PathVariable Long id, @Parameter(description = "New number of people") @RequestParam Integer newPeople){
+	public ResponseEntity<String> updatePeople(@Parameter(description = "Booking id") @PathVariable Long id, @Parameter(description = "New number of people") @RequestParam Integer newPeople){
 		try {
 			return bookingService.updatePeople(id,newPeople);
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.toString());
 		}
 	}
 }
