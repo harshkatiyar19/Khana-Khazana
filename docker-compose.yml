@@ -17,7 +17,7 @@ services:
       - khana_network
 
   app:
-    image: harshkatiyar19/khana-khazana:latest  # <-- Pull from Docker Hub
+    image: harshkatiyar19/khana-khazana:latest
     container_name: khana_app
     depends_on:
       - postgres

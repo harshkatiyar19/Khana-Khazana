@@ -17,7 +17,7 @@ public class Booking {
 
     @Id
     @SequenceGenerator(name="booking_seq",sequenceName = "booking_seq",allocationSize = 1,initialValue = 10)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "booking_seq")
     @Column(name = "booking_id")
     @Schema(description = "Primary key of booking", example = "10")
     private Long bookingId;

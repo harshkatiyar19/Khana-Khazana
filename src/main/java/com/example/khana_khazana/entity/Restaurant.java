@@ -19,7 +19,7 @@ public class Restaurant {
 
 	@Id
 	@SequenceGenerator(name="rest_seq",sequenceName = "rest_seq",allocationSize = 1,initialValue = 10)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "rest_seq")
 	@Column(name = "rest_id")
 	@Schema(description = "Primary key of restaurant", example = "10")
 	private Long restId;
@@ -48,4 +48,7 @@ public class Restaurant {
 	@Schema(description = "Number of tables available", example = "12")
 	private Integer numberOfTables;
 
+    @Column(name="img_url")
+    @Schema(description = "Images of restaurant")
+    private String imgUrl;
 }

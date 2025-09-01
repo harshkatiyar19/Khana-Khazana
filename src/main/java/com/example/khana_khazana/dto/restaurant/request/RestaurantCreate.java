@@ -9,5 +9,6 @@ public record RestaurantCreate(
 		@Schema(description = "Restaurant address", example = "123 Main Street, City") String address,
 		@Schema(description = "Cuisine type", example = "Indian") String cuisine,
 		@Schema(description = "Opening time", example = "10:00:00") LocalTime openTime,
-		@Schema(description = "Closing time", example = "23:00:00") LocalTime closeTime
+		@Schema(description = "Closing time", example = "23:00:00") LocalTime closeTime,
+        @Schema(description = "Image url", example = "23:00:00")String imgUrl
 ) { }

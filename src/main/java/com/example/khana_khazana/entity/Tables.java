@@ -18,7 +18,7 @@ public class Tables {
 
 	@Id
 	@SequenceGenerator(name="table_seq",sequenceName = "table_seq",allocationSize = 1,initialValue = 10)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "table_seq")
 	@Column(name = "table_id")
 	@Schema(description = "Primary key of table", example = "10")
 	private Long tableId;
